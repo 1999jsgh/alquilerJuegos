@@ -11,36 +11,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Utils;
-import com.example.demo.dto.UsuarioDto;
-import com.example.demo.entidad.Usuario;
-import com.example.demo.repositorio.UsuarioRepository;
+import com.example.demo.dto.JuegoDto;
+import com.example.demo.entidad.Juego;
+import com.example.demo.repositorio.JuegoRepository;
 
 @RestController
-@RequestMapping(path = "/usuario")
-public class UsuarioControlador {
+@RequestMapping(path = "/juego")
+public class JuegoControlador {
 
 	@Autowired
-	private UsuarioRepository rUsuarioRepository;
-
-	@GetMapping("/traerUsuarios")
-	public List<Usuario> findAll() {
-
-		return rUsuarioRepository.findAll();
-
-	}
-
+	private JuegoRepository rJuegoRepositorio;
 	
-	@PostMapping("/registro")
-	public Map<String, Object> create(@RequestBody UsuarioDto usuario) {
+	@GetMapping("/traerJuegos")
+	public List<Juego>findAll(){
+		return rJuegoRepositorio.findAll();
+		
+	}
+	@PostMapping("registro")
+	public Map<String, Object> create(@RequestBody JuegoDto juego) {
 		try {
-			Usuario u = new Usuario(usuario.getNombre(), usuario.getTelefono(), usuario.getCorreo());
-			rUsuarioRepository.save(u);
+			Juego j = new Juego(juego.getTitulo(), juego.getAno(), juego.getProtagonista(),juego.getDirector(),juego.getTecnologia());
+			rJuegoRepositorio.save(j);
 			return Utils.mapear(true, "Registro exitoso", null);
 
 		} catch (Exception e) {
 			return Utils.mapear(true, "Error de Registro", null);
 		}
 
-	}
-
+	}	
 }
