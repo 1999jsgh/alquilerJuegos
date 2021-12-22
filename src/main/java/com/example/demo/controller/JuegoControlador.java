@@ -27,7 +27,7 @@ public class JuegoControlador {
 		return rJuegoRepositorio.findAll();
 		
 	}
-	@PostMapping("registro")
+	@PostMapping("/registro")
 	public Map<String, Object> create(@RequestBody JuegoDto juego) {
 		try {
 			Juego j = new Juego(juego.getTitulo(), juego.getAno(), juego.getProtagonista(),juego.getDirector(),juego.getTecnologia());

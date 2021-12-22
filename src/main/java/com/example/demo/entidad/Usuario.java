@@ -62,5 +62,12 @@ public class Usuario {
 		this.correo = correo;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", telefono=" + telefono + ", correo="
+				+ correo + "]";
+	}
+
+	
 		
 }

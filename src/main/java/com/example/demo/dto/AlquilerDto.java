@@ -1,5 +1,11 @@
 package com.example.demo.dto;
 
+import java.util.List;
+import java.util.Set;
+
+import com.example.demo.entidad.Juego;
+import com.example.demo.entidad.Usuario;
+
 public class AlquilerDto {
 
 	private int idAlquiler;
@@ -7,9 +13,27 @@ public class AlquilerDto {
 	private String fechaRecibido;
 	private String fechaEntrega;
 	private int idUsuario;
-	private int idJuego;
+	
+	private
+	List<Juego> juego;
 	
 	
+	
+	public AlquilerDto( String precio, String fechaRecibido, String fechaEntrega, int idUsuario,
+			List<Juego> juego) {
+		super();
+		this.precio = precio;
+		this.fechaRecibido = fechaRecibido;
+		this.fechaEntrega = fechaEntrega;
+		this.idUsuario = idUsuario;
+		this.juego = juego;
+	}
+	public List<Juego> getJuego() {
+		return juego;
+	}
+	public void setJuego(List<Juego> juego) {
+		this.juego = juego;
+	}
 	public int getIdAlquiler() {
 		return idAlquiler;
 	}
@@ -40,12 +64,7 @@ public class AlquilerDto {
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	public int getIdJuego() {
-		return idJuego;
-	}
-	public void setIdJuego(int idJuego) {
-		this.idJuego = idJuego;
-	}
+
 	
 
 }
