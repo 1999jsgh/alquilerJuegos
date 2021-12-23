@@ -35,7 +35,7 @@ public class UsuarioControlador {
 		try {
 			Usuario u = new Usuario(usuario.getNombre(), usuario.getTelefono(), usuario.getCorreo());
 			rUsuarioRepository.save(u);
-			return Utils.mapear(true, "Registro exitoso", null);
+			return Utils.noRepues(true, "Registro exitoso");
 
 		} catch (Exception e) {
 			return Utils.mapear(true, "Error de Registro", null);

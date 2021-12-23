@@ -32,7 +32,7 @@ public class JuegoControlador {
 		try {
 			Juego j = new Juego(juego.getTitulo(), juego.getAno(), juego.getProtagonista(),juego.getDirector(),juego.getTecnologia());
 			rJuegoRepositorio.save(j);
-			return Utils.mapear(true, "Registro exitoso", null);
+			return Utils.noRepues(true, "Registro exitoso");
 
 		} catch (Exception e) {
 			return Utils.mapear(true, "Error de Registro", null);

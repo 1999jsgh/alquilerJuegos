@@ -14,4 +14,13 @@ public class Utils {
 		return respuesta;
 		
 	}
+	
+	public static Map<String, Object>noRepues(boolean status, String msg){
+		Map<String, Object> respuesta=new HashMap<>();
+		respuesta.put("msg", msg);
+		respuesta.put("status", status);
+
+		return respuesta;
+		
+	}
 }
