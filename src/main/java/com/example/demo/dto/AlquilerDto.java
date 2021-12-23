@@ -8,6 +8,7 @@ public class AlquilerDto {
 	private String fechaEntrega;
 	private int idUsuario;
 	private int idJuego;
+	private int estado;
 	
 	
 	public int getIdAlquiler() {
@@ -46,6 +47,14 @@ public class AlquilerDto {
 	public void setIdJuego(int idJuego) {
 		this.idJuego = idJuego;
 	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
+	
 	
 
 }

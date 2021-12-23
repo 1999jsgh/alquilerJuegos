@@ -36,6 +36,8 @@ public class Alquiler {
 	@JoinColumn(name="idjuego")
 	private Juego juego;
 	
+	private int estado;
+
 	
 	public Alquiler() {
 		super();
@@ -43,13 +45,15 @@ public class Alquiler {
 	
 	
 	
-	public Alquiler(String precio, String fechaRecibido, String fechaEntrega, Usuario usuario, Juego juego) {
+	public Alquiler(String precio, String fechaRecibido, String fechaEntrega, Usuario usuario, Juego juego,int estado) {
 		super();
 		this.precio = precio;
 		this.fechaRecibido = fechaRecibido;
 		this.fechaEntrega = fechaEntrega;
 		this.usuario = usuario;
 		this.juego = juego;
+		this.estado = estado;
+
 	}
 
 
@@ -89,6 +93,18 @@ public class Alquiler {
 	}
 	public void setJuego(Juego juego) {
 		this.juego = juego;
+	}
+
+
+
+	public int getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 

@@ -14,4 +14,10 @@ public interface AlquilerRepository extends JpaRepository<Alquiler, Integer>{
     
     @Query(nativeQuery = true,value = " SELECT * FROM `aquiler` WHERE idUsuario=?")
     List<Alquiler> findById(int idUsuario);
+    
+    @Query(nativeQuery = true,value = "SELECT * FROM `aquiler` WHERE `fechaRecibido`=?")
+    List<Alquiler> filtrarFecha(String fechaIn);
+    
+    @Query(nativeQuery = true,value = "SELECT * FROM `aquiler` WHERE `estado`=?")
+    List<Alquiler> filtrarDisponible(String fechaIn);
 }
