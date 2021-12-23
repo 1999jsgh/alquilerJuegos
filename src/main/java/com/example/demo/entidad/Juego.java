@@ -81,14 +81,4 @@ public class Juego {
 	public void setTecnologia(String tecnologia) {
 		this.tecnologia = tecnologia;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "Juego [idJuego=" + idJuego + ", titulo=" + titulo + ", ano=" + ano + ", protagonista=" + protagonista
-				+ ", director=" + director + ", tecnologia=" + tecnologia + "]";
-	}
-	
-	
 }
