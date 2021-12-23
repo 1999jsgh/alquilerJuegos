@@ -42,37 +42,73 @@ public class AlquilerControlador {
 	@PostMapping(path = "/mostrarAlquiler/{idusuario}")
 	public Map<String, Object> mostrarAlquiler(@PathVariable int idusuario) {
 		List<Alquiler> listaAlquiler = rAlquilerRepository.findById(idusuario);
+		if(listaAlquiler.size()!=0){
+			
+			return Utils.mapear(true, "Alquileres realizados.", listaAlquiler);
 
-		return Utils.mapear(true, "Alquileres realizados.", listaAlquiler);
+		}else {
+			return Utils.noRepues(false, "Error de Parametro");
+
+		}
+
 
 	}
 
 	@PostMapping("/registro")
 	public Map<String, Object> agregar(@RequestBody AlquilerDto alquilerDto) {
-		Optional<Usuario> usuario = rUsuarioRepository.findById(alquilerDto.getIdUsuario());
-		Optional<Juego> juego = rJuegoRepository.findById(alquilerDto.getIdJuego());
-		if (usuario.isPresent()) {
-			Alquiler alqui = new Alquiler(alquilerDto.getPrecio(), alquilerDto.getFechaRecibido(),
-					alquilerDto.getFechaEntrega(), usuario.get(), juego.get(),alquilerDto.getEstado());
-			rAlquilerRepository.save(alqui);
-			return Utils.mapear(true, "Registro exitoso", alqui);
+		try {
+			Optional<Usuario> usuario = rUsuarioRepository.findById(alquilerDto.getIdUsuario());
+			Optional<Juego> juego = rJuegoRepository.findById(alquilerDto.getIdJuego());
+			if (usuario.isPresent()) {
+				Alquiler alqui = new Alquiler(alquilerDto.getPrecio(), alquilerDto.getFechaRecibido(),
+						alquilerDto.getFechaEntrega(), usuario.get(), juego.get(), alquilerDto.getEstado());
+
+				if (alquilerDto.getEstado() == 0 || alquilerDto.getEstado() == 1) {
+					rAlquilerRepository.save(alqui);
+					return Utils.mapear(true, "Registro exitoso", alqui);
+				} else {
+					return Utils.mapear(false, "Error dato Estado", null);
+				}
+			}
+		} catch (Exception e) {
+			return Utils.mapear(false, "Fallo de registro", null);
+
 		}
-		return Utils.mapear(true, "Registro maluco", null);
+		return Utils.mapear(false, "Error Registro", null);
+
 	}
 
 	@PostMapping("/reporte/{fechaIn}")
 	public Map<String, Object> reporte(@PathVariable String fechaIn) {
-		List<Alquiler> listarReporte = rAlquilerRepository.filtrarFecha(fechaIn);
-		
-		return Utils.mapear(true, "Alquileres realizados.", listarReporte);
-	
+		try {
+			List<Alquiler> listarReporte = rAlquilerRepository.filtrarFecha(fechaIn);
+			if (listarReporte.size() != 0) {
+				return Utils.mapear(true, "registro reporte por fecha", listarReporte);
+			} else {
+				return Utils.noRepues(true, "Error de Formato de Fecha");
+			}
+
+		} catch (Exception e) {
+			return Utils.noRepues(true, "Error de reporte fecha");
+		}
+
 	}
-	
+
 	@PostMapping("/alquilerDia/{disponible}")
-	public Map<String, Object> filtrarDisponible(@PathVariable String disponible){
-		List<Alquiler> listarDisponible = rAlquilerRepository.filtrarDisponible(disponible);
-		return Utils.mapear(true, "Alquileres realizados.", listarDisponible);
-		
+	public Map<String, Object> filtrarDisponible(@PathVariable String disponible) {
+		try {
+			List<Alquiler> listarDisponible = rAlquilerRepository.filtrarDisponible(disponible);
+			if (listarDisponible.size()!=0) {
+				return Utils.mapear(true, "Alquileres realizados.", listarDisponible);
+
+			}else {
+				return Utils.noRepues(false, "Error de Parametro");
+
+			}
+		} catch (Exception e) {
+			return Utils.mapear(false, "Error de reporte Alquiler por Dia", null);
+		}
+
 	}
-	
+
 }
