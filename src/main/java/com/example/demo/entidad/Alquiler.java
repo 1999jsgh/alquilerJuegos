@@ -42,6 +42,18 @@ public class Alquiler {
 	}
 	
 	
+	
+	public Alquiler(String precio, String fechaRecibido, String fechaEntrega, Usuario usuario, Juego juego) {
+		super();
+		this.precio = precio;
+		this.fechaRecibido = fechaRecibido;
+		this.fechaEntrega = fechaEntrega;
+		this.usuario = usuario;
+		this.juego = juego;
+	}
+
+
+
 	public int getIdAlquiler() {
 		return idAlquiler;
 	}
